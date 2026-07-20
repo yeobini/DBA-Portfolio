@@ -31,4 +31,4 @@ Orders와 Product는 하나의 주문에 여러 상품이 포함될 수 있고, 
 
 ### ERD
 
-![ERD](02-Database_Desing/erd_day2.png)
+![ERD](erd_day2.png)
