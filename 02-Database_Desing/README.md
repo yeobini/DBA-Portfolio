@@ -28,3 +28,7 @@ Orders와 Product는 하나의 주문에 여러 상품이 포함될 수 있고, 
 - OrderItem 테이블 분리 이유
 - 정규화의 필요성
 - 부모 테이블과 자식 테이블 개념
+
+### ERD
+
+![ERD](erd_day2.png)
