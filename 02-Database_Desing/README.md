@@ -1,9 +1,9 @@
-# Day 2 (2026-07-21)
+# Day 2 - Database Design
 
-### 목표
+### Objective
 쇼핑몰 데이터베이스 논리 설계
 
-### 수행 내용
+### Tasks
 - Member 테이블 설계
 - Category 테이블 설계
 - Product 테이블 설계
@@ -23,7 +23,7 @@ Orders와 Product는 하나의 주문에 여러 상품이 포함될 수 있고, 
 또한 주문 상품별 **수량(quantity)**, **주문 당시 가격(order_price)** 등의 정보를 저장하여 주문 정보와 상품 정보를 분리하고 데이터 중복을 최소화하도록 설계하였다.
 
 
-### 학습 내용
+### Result
 - 1:N, N:M 관계 이해
 - OrderItem 테이블 분리 이유
 - 정규화의 필요성
