@@ -6,7 +6,7 @@ ERD를 기반으로 MySQL DDL을 작성하고 테이블을 생성한다.
 
 ### Tasks
 
--Member 테이블 생성
+- Member 테이블 생성
 - Category 테이블 생성
 - Product 테이블 생성
 - Orders 테이블 생성
