@@ -73,6 +73,14 @@ DDL 작성 과정에서 실제 쇼핑몰 서비스의 요구사항을 고려하�
 
 ---
 
+## SQL
+
+전체 DDL은 아래 파일에서 확인할 수 있습니다.
+
+- [ddl.sql](ddl.sql)
+
+---
+
 ### Result
 - CREATE TABLE 작성
 - PK / FK 제약조건 적용
