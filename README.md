@@ -55,8 +55,8 @@ DBA-Portfolio
 - [x] GitHub Repository 생성
 - [x] MySQL 환경 구축
 - [x] Database(Schema) 생성
-- [ ] ERD 설계
-- [ ] 테이블 생성
+- [x] ERD 설계
+- [x] 테이블 생성
 - [ ] SQL 실습
 - [ ] 성능 튜닝
 - [ ] 트랜잭션 테스트
