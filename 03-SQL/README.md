@@ -1,10 +1,10 @@
-# Day 3 - sql
+# Day 3 - Database DDL (CREATE)
 
-### Objective
+## Objective
 
 ERD를 기반으로 MySQL DDL을 작성하고 테이블을 생성한다.
 
-### Tasks
+## Tasks
 
 - Member 테이블 생성
 - Category 테이블 생성
@@ -22,7 +22,7 @@ ERD를 기반으로 MySQL DDL을 작성하고 테이블을 생성한다.
 - NOT NULL, UNIQUE, CHECK 제약조건 적용
 - DEFAULT 및 자동 시간 기록 설정
 
-### Design Decision
+## Design NOTE
 
 ### 1. OrderItem 테이블 분리 이유
 Orders와 Product는 하나의 주문에 여러 상품이 포함될 수 있고, 하나의 상품도 여러 주문에 포함될 수 있는 **N:M(다대다)** 관계이다.
@@ -77,7 +77,7 @@ DDL 작성 과정에서 실제 쇼핑몰 서비스의 요구사항을 고려하�
 
 전체 DDL은 아래 파일에서 확인할 수 있습니다.
 
-- [ddl.sql](create_tables.sql)
+- [create_tables.sql](create_tables.sql)
 
 ---
 
@@ -89,3 +89,64 @@ DDL 작성 과정에서 실제 쇼핑몰 서비스의 요구사항을 고려하�
 - 1:1, 1:N, N:M 관계 구현
 - 정규화를 고려한 테이블 설계
 - 실행 가능한 쇼핑몰 데이터베이스 구축
+
+
+---
+
+
+# Day 4 - Database DML (INSERT)
+
+## Objective
+쇼핑몰 데이터베이스에 테스트 데이터를 삽입하여 테이블 간 관계와 외래키(Foreign Key)를 검증하고, 이후 SQL 조회(SELECT) 및 JOIN 실습을 위한 테스트 데이터를 준비한다.
+
+## Tasks
+- Member 데이터 입력
+- Category 데이터 입력
+- Product 데이터 입력
+- Orders 데이터 입력
+- OrderItem 데이터 입력
+- Payment 데이터 입력
+- Delivery 데이터 입력
+- Review 데이터 입력
+- 외래키(FK) 관계 검증
+- 테스트 데이터 무결성 확인
+
+## Design Note
+
+### 1. OrderItem을 사용하는 이유
+
+처음에는 Orders 테이블에 `product_id`를 저장하는 구조를 고려했다.
+
+하지만 하나의 주문에는 여러 개의 상품이 포함될 수 있으므로, Orders 테이블에 `product_id`를 저장하면 하나의 주문에 하나의 상품만 저장할 수 있는 문제가 발생한다.
+
+이를 해결하기 위해 Orders와 Product 사이에 **OrderItem** 테이블을 두었다.
+
+```
+Orders (1) ----- (N) OrderItem (N) ----- (1) Product
+```
+
+OrderItem은 주문별 상품과 수량, 주문 당시 가격을 저장하여 **N:M 관계를 해소**하고, 주문 이력을 정확하게 관리할 수 있도록 설계하였다.
+
+### 2. Review 작성 조건
+
+Review는 order_item_id를 참조하도록 설계하였다.
+
+이를 통해 실제 구매한 상품에 대해서만 리뷰를 작성할 수 있으며, 테스트 데이터에서는 배송 완료된 주문에 대해서만 리뷰를 생성하여 실제 쇼핑몰의 비즈니스 로직을 반영하였다.
+
+---
+
+## SQL
+
+전체 DML은 아래 파일에서 확인할 수 있습니다.
+
+- [insert_tables.sql](insert_tables.sql)
+
+
+---
+
+
+## Result
+- INSERT 문 작성
+- 테스트 데이터 생성
+- FK 관계 검증
+- JOIN을 위한 데이터 준비
