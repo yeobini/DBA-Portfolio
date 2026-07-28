@@ -1,10 +1,10 @@
 # Day 3 - Database DDL (CREATE)
 
-## Objective
+### Objective
 
 ERD를 기반으로 MySQL DDL을 작성하고 테이블을 생성한다.
 
-## Tasks
+### Tasks
 
 - Member 테이블 생성
 - Category 테이블 생성
@@ -22,33 +22,33 @@ ERD를 기반으로 MySQL DDL을 작성하고 테이블을 생성한다.
 - NOT NULL, UNIQUE, CHECK 제약조건 적용
 - DEFAULT 및 자동 시간 기록 설정
 
-## Design NOTE
+### Design NOTE
 
-### 1. OrderItem 테이블 분리 이유
+#### 1. OrderItem 테이블 분리 이유
 Orders와 Product는 하나의 주문에 여러 상품이 포함될 수 있고, 하나의 상품도 여러 주문에 포함될 수 있는 **N:M(다대다)** 관계이다.
 
 관계형 데이터베이스에서는 다대다 관계를 직접 표현할 수 없기 때문에 중간 테이블인 **OrderItem**을 생성하였다.
 
 또한 상품별 **주문 수량(quantity)** 과 **주문 당시 가격(order_price)** 을 저장하여 데이터 중복을 최소화하고 주문 이력을 정확하게 관리하도록 설계하였다.
 
-### 2. 주문 당시 가격(order_price) 저장 이유
+#### 2. 주문 당시 가격(order_price) 저장 이유
 상품의 현재 가격(Product.price)은 변경될 수 있기 때문에 주문 당시 가격을 별도로 저장하였다.
 
 이를 통해 가격이 변경되더라도 과거 주문 내역은 주문 당시의 가격으로 정확하게 조회할 수 있도록 설계하였다.
 
-### 3. Payment와 Delivery를 Orders와 1:1 관계로 설계한 이유
+#### 3. Payment와 Delivery를 Orders와 1:1 관계로 설계한 이유
 하나의 주문은 하나의 결제 정보와 하나의 배송 정보를 가지도록 설계하였다.
 
 이를 위해 `order_id`에 **UNIQUE** 제약조건을 적용하여 하나의 주문에 여러 개의 결제 또는 배송 정보가 생성되지 않도록 하였다.
 
-### 4. Review를 OrderItem과 연결한 이유
+#### 4. Review를 OrderItem과 연결한 이유
 리뷰는 주문 전체가 아닌 **구매한 개별 상품**에 대해 작성된다.
 
 따라서 `order_id`와 `product_id`를 함께 저장하는 대신 **order_item_id**를 참조하도록 설계하여 데이터 중복을 줄이고 정규화를 적용하였다.
 
 또한 `order_item_id`에 UNIQUE 제약조건을 적용하여 하나의 주문 상품에는 하나의 리뷰만 작성할 수 있도록 하였다.
 
-### 5. ERD 및 테이블 구조 개선
+#### 5. ERD 및 테이블 구조 개선
 
 DDL 작성 과정에서 실제 쇼핑몰 서비스의 요구사항을 고려하여 ERD와 테이블 구조를 일부 개선하였다.
 
@@ -66,14 +66,14 @@ DDL 작성 과정에서 실제 쇼핑몰 서비스의 요구사항을 고려하�
 
 ---
 
-## ERD
+### ERD
 
 ![ERD](erd_day3.PNG)
 
 
 ---
 
-## SQL
+### SQL
 
 전체 DDL은 아래 파일에서 확인할 수 있습니다.
 
@@ -96,10 +96,10 @@ DDL 작성 과정에서 실제 쇼핑몰 서비스의 요구사항을 고려하�
 
 # Day 4 - Database DML (INSERT)
 
-## Objective
+### Objective
 쇼핑몰 데이터베이스에 테스트 데이터를 삽입하여 테이블 간 관계와 외래키(Foreign Key)를 검증하고, 이후 SQL 조회(SELECT) 및 JOIN 실습을 위한 테스트 데이터를 준비한다.
 
-## Tasks
+### Tasks
 - Member 데이터 입력
 - Category 데이터 입력
 - Product 데이터 입력
@@ -111,9 +111,9 @@ DDL 작성 과정에서 실제 쇼핑몰 서비스의 요구사항을 고려하�
 - 외래키(FK) 관계 검증
 - 테스트 데이터 무결성 확인
 
-## Design Note
+### Design Note
 
-### 1. OrderItem을 사용하는 이유
+#### 1. OrderItem을 사용하는 이유
 
 처음에는 Orders 테이블에 `product_id`를 저장하는 구조를 고려했다.
 
@@ -127,7 +127,7 @@ Orders (1) ----- (N) OrderItem (N) ----- (1) Product
 
 OrderItem은 주문별 상품과 수량, 주문 당시 가격을 저장하여 **N:M 관계를 해소**하고, 주문 이력을 정확하게 관리할 수 있도록 설계하였다.
 
-### 2. Review 작성 조건
+#### 2. Review 작성 조건
 
 Review는 order_item_id를 참조하도록 설계하였다.
 
@@ -135,7 +135,7 @@ Review는 order_item_id를 참조하도록 설계하였다.
 
 ---
 
-## SQL
+### SQL
 
 전체 DML은 아래 파일에서 확인할 수 있습니다.
 
@@ -145,7 +145,7 @@ Review는 order_item_id를 참조하도록 설계하였다.
 ---
 
 
-## Result
+### Result
 - INSERT 문 작성
 - 테스트 데이터 생성
 - FK 관계 검증
