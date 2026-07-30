@@ -150,3 +150,38 @@ Review는 order_item_id를 참조하도록 설계하였다.
 - 테스트 데이터 생성
 - FK 관계 검증
 - JOIN을 위한 데이터 준비
+
+
+---
+
+
+# Day 4 - Database DML (SELECT)
+
+### Objective
+쇼핑몰 데이터베이스에 삽입한 데이터로 SQL 조회(SELECT)실습을 진행한다.
+
+### TASKS
+- SELECT 문 학습
+- WHERE 조건 조회
+- ORDER BY 정렬
+
+- ### Design Note
+
+#### SELECT문에서의 순서
+SELECT -> FROM -> WHERE -> ORDER BY(DESC 내림차순, ASC 오름차순)
+
+### SQL
+
+전체 DML은 아래 파일에서 확인할 수 있습니다.
+
+- [select_tables.sql](select_tables.sql)
+
+
+---
+
+
+### Result
+- SELECT 문 작성
+
+
+
