@@ -101,8 +101,6 @@ DDL 작성 과정에서 실제 쇼핑몰 서비스의 요구사항을 고려하�
 ### Objective
 쇼핑몰 데이터베이스에 테스트 데이터를 삽입하여 테이블 간 관계와 외래키(Foreign Key)를 검증하고, 이후 SQL 조회(SELECT) 및 JOIN 실습을 위한 테스트 데이터를 준비한다.
 
----
-
 ### Tasks
 - Member 데이터 입력
 - Category 데이터 입력
@@ -165,8 +163,6 @@ Review는 order_item_id를 참조하도록 설계하였다.
 
 ### Objective
 쇼핑몰 데이터베이스에 삽입한 테스트 데이터를 활용하여 SELECT 문을 학습하고, 기본적인 데이터 조회 및 정렬 방법을 실습한다.
-
----
 
 ### TASKS
 - SELECT 문 학습
