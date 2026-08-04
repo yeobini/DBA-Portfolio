@@ -22,6 +22,8 @@ ERD를 기반으로 MySQL DDL을 작성하고 테이블을 생성한다.
 - NOT NULL, UNIQUE, CHECK 제약조건 적용
 - DEFAULT 및 자동 시간 기록 설정
 
+---
+
 ### Design NOTE
 
 #### 1. OrderItem 테이블 분리 이유
@@ -99,6 +101,8 @@ DDL 작성 과정에서 실제 쇼핑몰 서비스의 요구사항을 고려하�
 ### Objective
 쇼핑몰 데이터베이스에 테스트 데이터를 삽입하여 테이블 간 관계와 외래키(Foreign Key)를 검증하고, 이후 SQL 조회(SELECT) 및 JOIN 실습을 위한 테스트 데이터를 준비한다.
 
+---
+
 ### Tasks
 - Member 데이터 입력
 - Category 데이터 입력
@@ -110,6 +114,8 @@ DDL 작성 과정에서 실제 쇼핑몰 서비스의 요구사항을 고려하�
 - Review 데이터 입력
 - 외래키(FK) 관계 검증
 - 테스트 데이터 무결성 확인
+
+---
 
 ### Design Note
 
@@ -160,15 +166,19 @@ Review는 order_item_id를 참조하도록 설계하였다.
 ### Objective
 쇼핑몰 데이터베이스에 삽입한 테스트 데이터를 활용하여 SELECT 문을 학습하고, 기본적인 데이터 조회 및 정렬 방법을 실습한다.
 
+---
+
 ### TASKS
 - SELECT 문 학습
 - WHERE를 이용한 조건 조회
 - ORDER BY를 이용한 데이터 정렬
 - ASC(오름차순) 및 DESC(내림차순) 정렬 실습
 
+---
+
 ### Design Note
 
-#### SQL 작성 순서
+#### 1. SQL 작성 순서
 
 SQL은 일반적으로 아래 순서로 작성한다.
 
@@ -177,7 +187,7 @@ FROM
 WHERE
 ORDER BY
 
-#### SQL 실행 순서
+#### 2. SQL 실행 순서
 
 하지만 데이터베이스 내부에서는 아래 순서대로 실행된다.
 
@@ -186,11 +196,13 @@ FROM
 → SELECT
 → ORDER BY
 
-#### 작성 순서와 실행 순서가 다른 이유
+#### 3. 작성 순서와 실행 순서가 다른 이유
 
 SQL은 사람이 읽기 쉽도록 조회할 컬럼(SELECT) 을 먼저 작성하지만, 데이터베이스는 먼저 ​어떤 테이블(FROM)에서 데이터를 가져올지 결정한 뒤, ​조건(WHERE) 을 적용하고, 필요한 컬럼을 SELECT 한 후 마지막으로 ORDER BY 를 통해 정렬을 수행한다.
 
 이 실행 순서를 이해하면 GROUP BY, HAVING, JOIN과 같은 고급 SQL을 학습할 때도 도움이 된다.
+
+---
 
 ### SQL
 
@@ -209,6 +221,7 @@ SQL은 사람이 읽기 쉽도록 조회할 컬럼(SELECT) 을 먼저 작성하�
 - ORDER BY를 이용한 데이터 정렬
 - WHERE와 ORDER BY를 함께 사용하는 방법 이해
 
+---
 
 # Day 6 - SQL 조건 검색 심화 (LIMIT, DISTINCT, LIKE, BETWEEN, IN, IS NULL, AS)
 
@@ -276,6 +289,8 @@ NULL은 값이 존재하지 않는 상태이며 일반 비교 연산자로 조�
 AS는 조회 결과의 컬럼명을 변경할 때 사용한다.
 
 실제 테이블 구조는 변경되지 않고 조회 결과에서만 적용된다.
+
+---
 
 ### SQL
 
