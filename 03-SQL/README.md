@@ -155,33 +155,146 @@ Review는 order_item_id를 참조하도록 설계하였다.
 ---
 
 
-# Day 4 - Database DML (SELECT)
+# Day 5 -  SQL 기본 조회와 정렬 (SELECT, WHERE, ORDER BY)
 
 ### Objective
-쇼핑몰 데이터베이스에 삽입한 데이터로 SQL 조회(SELECT)실습을 진행한다.
+쇼핑몰 데이터베이스에 삽입한 테스트 데이터를 활용하여 SELECT 문을 학습하고, 기본적인 데이터 조회 및 정렬 방법을 실습한다.
 
 ### TASKS
 - SELECT 문 학습
-- WHERE 조건 조회
-- ORDER BY 정렬
+- WHERE를 이용한 조건 조회
+- ORDER BY를 이용한 데이터 정렬
+- ASC(오름차순) 및 DESC(내림차순) 정렬 실습
 
-- ### Design Note
+### Design Note
 
-#### SELECT문에서의 순서
-SELECT -> FROM -> WHERE -> ORDER BY(DESC 내림차순, ASC 오름차순)
+#### SQL 작성 순서
+
+SQL은 일반적으로 아래 순서로 작성한다.
+
+SELECT
+FROM
+WHERE
+ORDER BY
+
+#### SQL 실행 순서
+
+하지만 데이터베이스 내부에서는 아래 순서대로 실행된다.
+
+FROM
+→ WHERE
+→ SELECT
+→ ORDER BY
+
+#### 작성 순서와 실행 순서가 다른 이유
+
+SQL은 사람이 읽기 쉽도록 조회할 컬럼(SELECT) 을 먼저 작성하지만, 데이터베이스는 먼저 ​어떤 테이블(FROM)에서 데이터를 가져올지 결정한 뒤, ​조건(WHERE) 을 적용하고, 필요한 컬럼을 SELECT 한 후 마지막으로 ORDER BY 를 통해 정렬을 수행한다.
+
+이 실행 순서를 이해하면 GROUP BY, HAVING, JOIN과 같은 고급 SQL을 학습할 때도 도움이 된다.
 
 ### SQL
 
 전체 DML은 아래 파일에서 확인할 수 있습니다.
 
-- [select_tables.sql](select_tables.sql)
+- [basic_query.sql](basic_query.sql)
 
 
 ---
 
 
 ### Result
-- SELECT 문 작성
+- SELECT를 이용한 전체 데이터 조회
+- 필요한 컬럼만 조회하는 방법 학습
+- WHERE를 이용한 조건 조회
+- ORDER BY를 이용한 데이터 정렬
+- WHERE와 ORDER BY를 함께 사용하는 방법 이해
+
+
+# Day 6 - SQL 조건 검색 심화 (LIMIT, DISTINCT, LIKE, BETWEEN, IN, IS NULL, AS)
+
+### Objective
+SQL 조회 시 필요한 조건 검색 문법을 학습하고, 데이터 조회 범위를 제한하거나 원하는 조건의 데이터만 추출하는 방법을 실습한다.
+
+---
+
+### TASKS
+- LIMIT을 이용한 조회 결과 개수 제한
+- DISTINCT를 이용한 중복 데이터 제거
+- LIKE를 이용한 패턴 검색
+- BETWEEN을 이용한 범위 조건 조회
+- IN을 이용한 다중 조건 조회
+- IS NULL / IS NOT NULL을 이용한 NULL 데이터 조회
+- AS를 이용한 컬럼 별칭 지정
+
+---
+
+### Design Note
+
+#### 1. LIMIT 사용 이유
+LIMIT은 조회 결과에서 원하는 개수만 반환하기 위해 사용한다.
+
+데이터가 많은 테이블에서 전체 데이터를 조회하는 것은 불필요한 부하를 발생시킬 수 있기 때문에,
+상위 N개의 데이터 조회나 페이징 처리 등에 활용된다.
+
+#### 2. DISTINCT 중복 제거 기준
+DISTINCT는 SELECT 절에 지정된 컬럼 전체를 기준으로 중복 여부를 판단한다.
+
+```sql
+SELECT DISTINCT category_id, price
+FROM product;
+```
+
+위 경우 category_id만 비교하는 것이 아니라 (category_id + price) 조합이 동일한 경우 중복으로 판단한다.
+
+#### 3. LIKE 패턴 검색
+LIKE는 문자열 패턴 검색에 사용된다.
+
+검색 기능 구현이나 사용자 입력 기반 조회에서 활용된다.
+
+| 패턴    | 설명                 |
+| -----   | -------------        |
+| ABC%    | ABC로 시작하는 데이터 |
+| %ABC    | ABC로 끝나는 데이터  |
+| %ABC%   | ABC를 포함하는 데이터 |
+
+#### 4. BETWEEN 범위 조회
+
+BETWEEN은 특정 범위 내 데이터를 조회할 때 사용한다.
+
+기본적으로 양쪽 값을 포함한다.
+
+#### 5. IN 다중 조건 조회
+
+IN은 여러 값을 OR 조건으로 비교할 때 사용한다.
+
+#### 6. NULL 데이터 처리
+
+NULL은 값이 존재하지 않는 상태이며 일반 비교 연산자로 조회할 수 없다.
+
+#### 7. AS(별칭)
+
+AS는 조회 결과의 컬럼명을 변경할 때 사용한다.
+
+실제 테이블 구조는 변경되지 않고 조회 결과에서만 적용된다.
+
+### SQL
+
+전체 DML은 아래 파일에서 확인할 수 있습니다.
+
+- [basic_query2.sql](basic_query2.sql)
+
+
+---
+
+
+### Result
+- LIMIT을 이용한 조회 결과 제한
+- DISTINCT를 이용한 중복 데이터 제거
+- LIKE를 활용한 문자열 검색
+- BETWEEN을 활용한 범위 조건 조회
+- IN을 활용한 다중 조건 조회
+- IS NULL을 활용한 NULL 데이터 처리
+- AS를 활용한 조회 결과 가독성 개선
 
 
 
