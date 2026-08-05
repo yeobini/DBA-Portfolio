@@ -72,12 +72,11 @@ DDL 작성 과정에서 실제 쇼핑몰 서비스의 요구사항을 고려하�
 
 ![ERD](erd_day3.PNG)
 
-
 ---
 
 ### SQL
 
-전체 DDL은 아래 파일에서 확인할 수 있습니다.
+전체 SQL은 아래 파일에서 확인할 수 있습니다.
 
 - [create_tables.sql](create_tables.sql)
 
@@ -98,8 +97,10 @@ DDL 작성 과정에서 실제 쇼핑몰 서비스의 요구사항을 고려하�
 
 # Day 4 - Database DML (INSERT)
 
+
 ### Objective
 쇼핑몰 데이터베이스에 테스트 데이터를 삽입하여 테이블 간 관계와 외래키(Foreign Key)를 검증하고, 이후 SQL 조회(SELECT) 및 JOIN 실습을 위한 테스트 데이터를 준비한다.
+
 
 ### Tasks
 - Member 데이터 입력
@@ -141,7 +142,7 @@ Review는 order_item_id를 참조하도록 설계하였다.
 
 ### SQL
 
-전체 DML은 아래 파일에서 확인할 수 있습니다.
+전체 SQL은 아래 파일에서 확인할 수 있습니다.
 
 - [insert_tables.sql](insert_tables.sql)
 
@@ -161,8 +162,10 @@ Review는 order_item_id를 참조하도록 설계하였다.
 
 # Day 5 -  SQL 기본 조회와 정렬 (SELECT, WHERE, ORDER BY)
 
+
 ### Objective
 쇼핑몰 데이터베이스에 삽입한 테스트 데이터를 활용하여 SELECT 문을 학습하고, 기본적인 데이터 조회 및 정렬 방법을 실습한다.
+
 
 ### TASKS
 - SELECT 문 학습
@@ -202,7 +205,7 @@ SQL은 사람이 읽기 쉽도록 조회할 컬럼(SELECT) 을 먼저 작성하�
 
 ### SQL
 
-전체 DML은 아래 파일에서 확인할 수 있습니다.
+전체 SQL은 아래 파일에서 확인할 수 있습니다.
 
 - [basic_query.sql](basic_query.sql)
 
@@ -221,8 +224,10 @@ SQL은 사람이 읽기 쉽도록 조회할 컬럼(SELECT) 을 먼저 작성하�
 
 # Day 6 - SQL 조건 검색 심화 (LIMIT, DISTINCT, LIKE, BETWEEN, IN, IS NULL, AS)
 
+
 ### Objective
 SQL 조회 시 필요한 조건 검색 문법을 학습하고, 데이터 조회 범위를 제한하거나 원하는 조건의 데이터만 추출하는 방법을 실습한다.
+
 
 ### TASKS
 - LIMIT을 이용한 조회 결과 개수 제한
@@ -288,7 +293,7 @@ AS는 조회 결과의 컬럼명을 변경할 때 사용한다.
 
 ### SQL
 
-전체 DML은 아래 파일에서 확인할 수 있습니다.
+전체 SQL은 아래 파일에서 확인할 수 있습니다.
 
 - [basic_query2.sql](basic_query2.sql)
 
@@ -309,8 +314,10 @@ AS는 조회 결과의 컬럼명을 변경할 때 사용한다.
 
 # Day 7 - JOIN
 
+
 ### Objective
 관계형 데이터베이스에서 여러 테이블에 분리된 데이터를 PK와 FK 관계를 기반으로 연결하여 조회하는 방법을 학습한다.
+
 
 ### TASKS
 - INNER JOIN
@@ -382,7 +389,7 @@ JOIN은 여러 테이블의 데이터를 연결하는 과정에서 많은 데이
 
 ### SQL
 
-전체 DML은 아래 파일에서 확인할 수 있습니다.
+전체 SQL은 아래 파일에서 확인할 수 있습니다.
 
 - [join_query.sql](join_query.sql)
 
