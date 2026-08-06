@@ -49,11 +49,11 @@ JOIN product p
 -- 상품명과 판매 수량 조회
 SELECT 
 	p.product_name AS '상품명',
-	SUM(quantity) AS '판매 수량'
+	SUM(oi.quantity) AS '판매 수량'
 FROM product p
 JOIN orderitem oi
     ON p.product_id = oi.product_id
-GROUP BY product_name;
+GROUP BY p.product_name;
 
 -- 회원별 주문 횟수 조회
 SELECT 
