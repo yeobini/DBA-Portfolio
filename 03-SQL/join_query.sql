@@ -55,4 +55,12 @@ JOIN orderitem oi
     ON p.product_id = oi.product_id
 GROUP BY product_name;
 
+-- 회원별 주문 횟수 조회
+SELECT 
+	m.member_name AS '회원명',
+    count(o.order_id) AS '주문 횟수'
+FROM member m
+JOIN orders o 
+	on m.member_id = o.member_id
+GROUP BY m.member_id, m.member_name;
 	
