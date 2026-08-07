@@ -491,3 +491,169 @@ orderitem의 quantity와 order_price를 활용하여 계산한다.
 - HAVING을 이용한 그룹 조건 검색
 - JOIN과 집계 함수를 조합한 쇼핑몰 데이터 분석 쿼리 작성
 - 실제 서비스에서 활용 가능한 통계 조회 구현
+
+
+---
+
+
+# Day 9 - Subquery
+
+### Objective
+
+하나의 SQL 문 안에서 다른 SQL 문을 사용하여,
+서브쿼리의 결과를 조건으로 활용하는 방법을 학습한다.
+
+### Tasks
+
+- 단일 행 Subquery
+- 다중 행 Subquery
+- IN과 Subquery
+- NOT IN과 Subquery
+- EXISTS와 Subquery
+- 중첩 Subquery
+- JOIN과 Subquery 비교
+
+---
+
+### Design Note
+
+#### 1. Subquery 사용 이유
+
+Subquery는 하나의 SQL 문 안에 다른 SQL 문을 작성하여
+서브쿼리에서 조회한 결과를 외부 쿼리의 조건이나 값으로 사용하는 방법이다.
+
+특히 평균값, 최대값 등의 집계 결과를 기준으로 데이터를 조회하거나,
+특정 데이터의 존재 여부를 조건으로 사용할 때 활용할 수 있다.
+
+#### 2. 단일 행 Subquery
+
+서브쿼리의 결과가 하나의 값만 반환되는 경우이다.
+
+예를 들어 전체 상품의 평균 가격보다 비싼 상품을 조회할 수 있다.
+
+```sql
+SELECT *
+FROM product
+WHERE price > (
+    SELECT AVG(price)
+    FROM product
+);
+```
+
+#### 3. 다중 행 Subquery
+
+서브쿼리에서 여러 개의 행이 반환되는 경우이다.
+
+이 경우 IN, NOT IN 등을 사용하여 서브쿼리 결과와 비교할 수 있다
+
+```sql
+SELECT member_name, email
+FROM member
+WHERE member_id IN (
+    SELECT member_id
+    FROM orders
+);
+```
+
+#### 4. EXISTS
+
+EXISTS는 서브쿼리의 결과가 존재하는지 여부를 확인한다.
+
+```sql
+SELECT *
+FROM member m
+WHERE EXISTS (
+    SELECT 1
+    FROM orders o
+    WHERE o.member_id = m.member_id
+);
+```
+바깥 쿼리의 회원을 기준으로
+해당 회원의 주문 데이터가 하나라도 존재하면 TRUE가 되어
+해당 회원을 조회한다.
+
+SELECT 1은 실제 값을 가져오기 위한 것이 아니라
+조건에 맞는 행의 존재 여부만 확인하기 위해 사용하였다.
+
+#### 5. JOIN과 Subquery 비교
+
+동일한 결과를 JOIN과 Subquery를 이용하여 조회할 수 있는 경우가 있다.
+
+예를 들어 주문한 회원을 조회할 때:
+
+```sql
+-- JOIN
+SELECT DISTINCT
+    m.member_name,
+    m.email
+FROM member m
+JOIN orders o
+    ON m.member_id = o.member_id;
+```
+
+```sql
+-- Subquery
+SELECT
+    member_name,
+    email
+FROM member
+WHERE member_id IN (
+    SELECT member_id
+    FROM orders
+);
+```
+
+JOIN은 여러 테이블의 데이터를 연결하여 조회할 때 적합하고,
+Subquery는 다른 조회 결과를 현재 쿼리의 조건으로 사용할 때 유용하다.
+
+따라서 동일한 결과를 얻을 수 있더라도
+조회 목적과 데이터 구조에 따라 적절한 방법을 선택할 수 있다.
+
+#### 6. 중첩 Subquery
+
+서브쿼리 내부에 다시 서브쿼리를 사용할 수 있다.
+
+평균 가격보다 비싼 상품 중 가장 비싼 상품을 조회하는 경우:
+
+```sql
+SELECT product_name, price
+FROM product
+WHERE price = (
+    SELECT MAX(price)
+    FROM product
+    WHERE price > (
+        SELECT AVG(price)
+        FROM product
+    )
+);
+```
+실행 흐름은 다음과 같다.
+
+전체 상품의 평균 가격 계산
+        ↓
+평균 가격보다 비싼 상품 필터링
+        ↓
+그중 가장 높은 가격 조회
+        ↓
+해당 가격의 상품 조회
+
+---
+
+### SQL
+
+전체 SQL은 아래 파일에서 확인할 수 있습니다.
+
+- [subquery.sql](subquery.sql)
+
+
+---
+
+### Result
+
+- 단일 행 Subquery 작성
+- 다중 행 Subquery 작성
+- IN / NOT IN을 활용한 조건 조회
+- EXISTS를 활용한 데이터 존재 여부 확인
+- 집계 함수와 Subquery를 결합한 조건 조회
+- 중첩 Subquery 작성
+- JOIN과 Subquery의 차이 및 활용 상황 이해
