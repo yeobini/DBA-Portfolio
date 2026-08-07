@@ -646,6 +646,12 @@ WHERE price = (
 - [subquery.sql](subquery.sql)
 
 
+- [practice.sql](practice.sql)
+  
+  - 지금까지 학습한 SQL 문법을 활용한 종합 쿼리 문제 연습
+  - JOIN, GROUP BY, HAVING, 집계 함수 등을 활용한 데이터 조회
+
+
 ---
 
 ### Result
