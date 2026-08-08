@@ -676,7 +676,7 @@ VIEW의 개념을 이해하고 반복적으로 사용하는 조회 쿼리를 VIE
 
 ### Tasks
 - VIEW 개념 학습
-- VIEW 생성
+- VIEW 생성 
 - VIEW 조회
 - JOIN 및 집계 함수를 활용한 VIEW 작성
 
