@@ -663,3 +663,48 @@ WHERE price = (
 - 집계 함수와 Subquery를 결합한 조건 조회
 - 중첩 Subquery 작성
 - JOIN과 Subquery의 차이 및 활용 상황 이해
+
+
+---
+
+
+# Day 10 - VIEW
+
+### Objective
+
+VIEW의 개념을 이해하고 반복적으로 사용하는 조회 쿼리를 VIEW로 작성
+
+### Tasks
+- VIEW 개념 학습
+- VIEW 생성
+- VIEW 조회
+- JOIN 및 집계 함수를 활용한 VIEW 작성
+
+---
+
+### Design Note
+
+#### VIEW를 만드는 이유
+
+VIEW는 하나 이상의 테이블을 기반으로 작성한 SELECT 쿼리를 가상 테이블 형태로 제공하는 객체이다.
+
+복잡하거나 반복적으로 사용하는 조회 쿼리를 VIEW로 만들어 간단하게 조회할 수 있다.
+
+---
+
+### SQL
+
+전체 SQL은 아래 파일에서 확인할 수 있습니다.
+
+- [create_view.sql](create_view.sql)
+
+---
+
+### Result
+
+- `member_order_view` 생성 및 조회
+- `member_total_purchase` 생성 및 조회
+- `product_sales_summary` 생성 및 조회
+- JOIN과 집계 함수(`SUM`, `GROUP BY`)를 활용한 VIEW 작성
+- VIEW 조회 시 원본 테이블의 데이터를 기반으로 결과가 반환되는 것을 확인
+
