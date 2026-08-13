@@ -92,3 +92,110 @@ PRIMARY KEY와 UNIQUE 제약 조건을 설정하면 해당 컬럼에 인덱스�
 - 인덱스 적용 전 `type = ALL`, `key = NULL`로 전체 테이블을 탐색하는 것을 확인
 - 인덱스 적용 후 `type = ref`, `key = idx_member_name`으로 인덱스를 사용하는 것을 확인
 - PRIMARY KEY와 UNIQUE 제약 조건에 의해 인덱스가 자동으로 생성되는 것을 확인
+
+
+---
+
+
+# DAY 12 - COMPOSITE INDEX
+
+### Objective
+
+복합 인덱스의 개념과 컬럼 순서의 중요성을 이해하고 EXPLAIN을 활용하여 복합 인덱스의 적용 결과를 확인한다
+
+### Tasks
+
+- 복합 인덱스 개념 학습
+- 복합 인덱스 생성 및 삭제
+- 복합 인덱스 적용 전/후 실행 계획 비교
+- 복합 인덱스의 선두 컬럼에 따른 인덱스 사용 여부 확인
+
+---
+
+### Design Note
+
+#### 1. 복합 인덱스란?
+
+복합 인덱스는 두 개 이상의 컬럼을 하나의 인덱스로 구성한 것이다.
+
+여러 조건을 함께 사용하는 조회 쿼리의 성능을 개선하기 위해 사용할 수 있다.
+
+
+```sql
+CREATE INDEX idx_orders_member_status
+ON orders(member_id, order_status);
+```
+
+#### 2. 복합 인덱스의 컬럼 순서
+
+복합 인덱스는 컬럼의 순서가 중요하다.
+
+(member_id, order_status)로 생성한 경우 member_id가 선두 컬럼이 된다.
+
+- member_id 조건 → 인덱스 사용 가능
+- member_id + order_status 조건 → 인덱스 사용 가능
+- order_status 조건만 사용 → 인덱스를 효율적으로 사용하기 어려움
+
+#### 3. 단일 인덱스와 복합 인덱스 비교
+
+orders 테이블에서 다음 조건의 조회를 대상으로 실행 계획을 비교하였다.
+
+```sql
+EXPLAIN
+SELECT *
+FROM orders
+WHERE member_id = 1
+  AND order_status = '결제완료';
+```
+
+#### 복합 인덱스 적용 전
+
+기존 member_id 인덱스를 사용하여 member_id 조건은 인덱스로 조회하지만,
+order_status 조건은 추가적으로 필터링하는 것을 확인하였다.
+
+![복합 인덱스 적용 전 EXPLAIN](./images/day12_before.png)
+
+| 항목         | 값           | 의미                     |
+| ---------- | ----------- | ---------------------- |
+| `type`     | `ref`       | 인덱스를 이용하여 조회           |
+| `key`      | `member_id` | `member_id` 인덱스 사용     |
+| `rows`     | `1`         | MySQL이 검사할 것으로 예상한 행 수 |
+| `filtered` | `33.33`     | 추가 조건을 만족할 것으로 예상되는 비율 |
+
+
+#### 복합 인덱스 적용 후
+
+(member_id, order_status) 복합 인덱스를 생성한 후 두 조건을 함께 사용하는 것을 확인하였다.
+
+![복합 인덱스 적용 후 EXPLAIN](./images/day12_after.png)
+
+| 항목              | 값                          | 의미                          |
+| --------------- | -------------------------- | --------------------------- |
+| `type`          | `ref`                      | 인덱스를 이용하여 조회                |
+| `possible_keys` | `idx_orders_member_status` | 사용할 수 있는 인덱스                |
+| `key`           | `idx_orders_member_status` | 실제로 사용한 인덱스                 |
+| `rows`          | `1`                        | MySQL이 검사할 것으로 예상한 행 수      |
+| `filtered`      | `100.00`                   | 조회 대상 중 조건을 만족할 것으로 예상되는 비율 |
+
+#### 4. 선두 컬럼 확인
+
+복합 인덱스가 다음과 같이 구성된 경우:
+(member_id, order_status)
+
+member_id가 선두 컬럼이므로 member_id를 조건으로 사용하는 조회에서는 인덱스를 활용할 수 있다.
+
+반면 order_status만 조건으로 사용하는 경우 선두 컬럼인 member_id를 건너뛰므로 해당 복합 인덱스를 효율적으로 사용하기 어렵다.
+
+#### 5. 인덱스 설계 시 주의사항
+
+인덱스는 무조건 많이 생성하는 것이 아니라 실제 조회 패턴에 맞게 필요한 인덱스를 생성해야 한다.
+
+member_id만 조회하는 경우 이미 PRIMARY KEY 인덱스가 존재하므로 (member_id, order_status) 복합 인덱스를 추가로 생성할 필요가 없다.
+
+### Result
+
+- 복합 인덱스의 개념과 선두 컬럼의 중요성을 이해
+- member_id 단일 인덱스와 (member_id, order_status) 복합 인덱스의 실행 계획 비교
+- 복합 인덱스를 통해 여러 조건을 함께 조회할 수 있음을 확인
+- order_status만 조건으로 사용할 경우 복합 인덱스를 효율적으로 사용하기 어려움을 확인
+- 실제 조회 패턴에 맞게 필요한 인덱스를 설계해야 함을 확인
