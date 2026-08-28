@@ -247,7 +247,7 @@ CREATE INDEX idx_product_created_at
 ON product(created_at);
 ```
 
-'범위 조건'
+`범위 조건`
 
 ```sql
 WHERE created_at >= '2026-01-01'
@@ -255,7 +255,7 @@ WHERE created_at >= '2026-01-01'
 ```
 created_at 자체의 값 범위를 검색하기 때문에 **인덱스를 활용하기 유리하다**.
 
-'함수 사용'
+`함수 사용`
 
 ```sql
 WHERE YEAR(created_at) = 2026
