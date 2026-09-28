@@ -57,10 +57,10 @@ DBA-Portfolio
 - [x] Database(Schema) 생성
 - [x] ERD 설계
 - [x] 테이블 생성
-- [ ] SQL 실습
-- [ ] 성능 튜닝
-- [ ] 트랜잭션 테스트
-- [ ] 백업 및 복구
+- [x] SQL 실습
+- [x] 성능 튜닝
+- [x] 트랜잭션 테스트
+- [x] 백업 및 복구
 - [ ] Replication 구축
 - [ ] 데이터 마이그레이션
 
