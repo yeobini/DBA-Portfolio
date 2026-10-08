@@ -329,3 +329,79 @@ Docker 기반 MySQL Master-Replica 환경을 직접 구성하고 다음 과정�
 * Master 복구 후 Replica 자동 재연결 확인
 
 이를 통해 MySQL Replication의 기본적인 구성 및 동작 방식과 장애 상황에서의 복구 과정을 실습했다.
+
+
+
+# DAY 17 - Replication 2
+
+## Objective
+
+Docker 기반 MySQL Master-Replica 환경을 구성하고,
+`dba_portfolio` 데이터베이스를 대상으로 데이터 복제 및
+UPDATE / DELETE 복제 동작을 검증한다.
+
+
+## Tasks
+
+- `dba_portfolio` 데이터베이스 복구 및 복제 확인
+- UPDATE / DELETE 작업의 자동 복제 검증
+
+### 1. dba_portfolio 데이터베이스 연결
+
+기존에 구축한 Master-Replica 환경에
+실제 DBA 포트폴리오 데이터베이스인 `dba_portfolio`를 연결했다.
+
+Master의 빈 `dba_portfolio` 데이터베이스에 기존 백업 파일을 복구하고,
+Replica에서 테이블 및 데이터가 자동으로 생성되는 것을 확인했다.
+
+### 2. UPDATE 복제 테스트
+
+Master에서 상품 재고를 변경했다.
+
+```sql
+UPDATE product
+SET stock = stock - 1
+WHERE product_id = 2;
+```
+
+Master에서 재고가 6 → 5로 변경된 후
+Replica에서 별도의 UPDATE를 실행하지 않았음에도 동일하게 5로 변경되는 것을 확인했다.
+
+### 3. DELETE 복제 테스트
+
+삭제 작업을 검증하기 위해 테스트용 상품을 생성했다.
+
+```sql
+INSERT INTO product
+(category_id, product_name, price, stock)
+VALUES
+(1, 'Replication DELETE Test', 1000, 1);
+```
+
+테스트 상품 product_id = 5를 Master에서 삭제했다.
+
+```sql
+DELETE FROM product
+WHERE product_id = 5;
+```
+
+Master에서 삭제 후 Replica에서 동일한 데이터를 조회하여
+product_id = 5가 자동으로 삭제된 것을 확인했다.
+
+## Design Note
+
+MySQL Replication은 Master에서 발생한 변경 작업을 Binary Log에 기록하고,
+Replica가 해당 로그를 전달받아 Relay Log에 저장한 후 SQL 스레드를 통해 실행하는 방식으로 동작한다.
+
+따라서 Replica에서 직접 INSERT, UPDATE, DELETE를 수행하지 않아도
+Master에서 발생한 데이터 변경이 Replica에 자동으로 반영된다.
+
+## RESULT
+
+- dba_portfolio 데이터베이스 Master → Replica 복제 확인
+- INSERT 복제를 통한 초기 데이터 구성 확인
+- UPDATE 작업 자동 복제 확인
+- DELETE 작업 자동 복제 확인
+- Master에서 발생한 변경 사항이 Replica에 자동 반영되는 과정 검증
+- Docker 기반 MySQL Replication 운영 및 장애 상황 대응 경험 확보
+
