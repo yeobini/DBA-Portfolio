@@ -1,4 +1,4 @@
-# DAY 18 - Migratgion
+# DAY 18 - Migration
 
 ## Objective
 `mysqldump`를 활용해 기존 데이터베이스를 별도의 대상 데이터베이스로 이전하고, 데이터 건수 비교를 통해 마이그레이션 결과를 검증한다.

@@ -1,10 +1,10 @@
 # DAY 15 - BACKUP & RECOVERY
 
-### Objective
+## Objective
 
 `mysqldump`를 활용하여 MySQL 데이터베이스를 백업하고, 백업 파일을 이용하여 데이터를 복구하는 과정을 실습한다.
 
-### Tasks
+## Tasks
 
 - 현재 데이터베이스 상태 확인
 - `mysqldump`를 이용한 데이터베이스 백업
@@ -15,7 +15,7 @@
 
 ---
 
-### Design Note
+## Design Note
 
 #### 1. 백업 전 데이터베이스 상태 확인
 
@@ -177,7 +177,7 @@ COMMIT
 
 ---
 
-### SQL
+## SQL
 
 백업 및 복구 실습에 사용한 SQL은 아래 파일에서 확인할 수 있습니다.
 
@@ -185,7 +185,7 @@ COMMIT
 
 ---
 
-### Result
+## Result
 
 - `mysqldump`를 이용하여 MySQL 데이터베이스를 SQL 파일로 백업
 - 백업 파일에 테이블 구조와 데이터가 포함되어 있는 것을 확인

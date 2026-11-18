@@ -1,4 +1,4 @@
--- DAY 16 - BACKUP & RECOVERY
+-- DAY 15 - BACKUP & RECOVERY
 
 -- 백업 전 데이터 확인
 SELECT *

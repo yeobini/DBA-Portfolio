@@ -1,10 +1,10 @@
 # DAY 14 - TRANSACTION
 
-### Objective
+## Objective
 
 트랜잭션의 개념을 이해하고 COMMIT과 ROLLBACK을 활용하여 데이터 변경을 안전하게 처리
 
-### Tasks
+## Tasks
 
 - 트랜잭션 시작 및 종료
 - COMMIT과 ROLLBACK 실습
@@ -14,7 +14,7 @@
 
 ---
 
-### Design Note
+## Design Note
 
 #### 1. Transaction이란?
 
@@ -143,7 +143,7 @@ Session B의 재고 차감 쿼리는 Session A의 트랜잭션이 종료될 때�
 
 ---
 
-### SQL
+## SQL
 
 트랜잭션 실습에 사용한 SQL은 아래 파일에서 확인할 수 있습니다.
 
@@ -151,7 +151,7 @@ Session B의 재고 차감 쿼리는 Session A의 트랜잭션이 종료될 때�
 
 ---
 
-### Result
+## Result
 - COMMIT과 ROLLBACK의 차이를 확인
 - 여러 SQL 작업을 하나의 트랜잭션으로 처리
 - 정상적인 주문 처리 후 COMMIT을 통해 변경사항을 확정

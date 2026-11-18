@@ -1,10 +1,10 @@
 # DAY 11 - INDEX & EXPLAIN
 
-### Objective
+## Objective
 
 인덱스의 개념과 필요성을 이해하고 EXPLAIN을 활용하여 쿼리의 실행 계획을 확인
 
-### Tasks
+## Tasks
 
 - 인덱스 개념 학습
 - 인덱스 생성 및 삭제
@@ -13,7 +13,7 @@
 
 ---
 
-### Design Note
+## Design Note
 
 #### 1. INDEX란?
 
@@ -77,7 +77,7 @@ PRIMARY KEY와 UNIQUE 제약 조건을 설정하면 해당 컬럼에 인덱스�
 
 ---
 
-### SQL
+## SQL
 
 인덱스 생성 및 EXPLAIN 실행 관련 SQL은 아래 파일에서 확인할 수 있습니다.
 
@@ -85,7 +85,7 @@ PRIMARY KEY와 UNIQUE 제약 조건을 설정하면 해당 컬럼에 인덱스�
 
 ---
 
-### Result
+## Result
 
 - `member_name`에 인덱스를 생성하고 삭제하는 과정 실습
 - EXPLAIN을 통해 인덱스 적용 전/후 실행 계획 비교
@@ -99,11 +99,11 @@ PRIMARY KEY와 UNIQUE 제약 조건을 설정하면 해당 컬럼에 인덱스�
 
 # DAY 12 - COMPOSITE INDEX
 
-### Objective
+## Objective
 
 복합 인덱스의 개념과 컬럼 순서의 중요성을 이해하고 EXPLAIN을 활용하여 복합 인덱스의 적용 결과를 확인한다
 
-### Tasks
+## Tasks
 
 - 복합 인덱스 개념 학습
 - 복합 인덱스 생성 및 삭제
@@ -112,7 +112,7 @@ PRIMARY KEY와 UNIQUE 제약 조건을 설정하면 해당 컬럼에 인덱스�
 
 ---
 
-### Design Note
+## Design Note
 
 #### 1. 복합 인덱스란?
 
@@ -192,7 +192,7 @@ member_id가 선두 컬럼이므로 member_id를 조건으로 사용하는 조�
 
 member_id만 조회하는 경우 이미 PRIMARY KEY 인덱스가 존재하므로 (member_id, order_status) 복합 인덱스를 추가로 생성할 필요가 없다.
 
-### Result
+## Result
 
 - 복합 인덱스의 개념과 선두 컬럼의 중요성을 이해
 - member_id 단일 인덱스와 (member_id, order_status) 복합 인덱스의 실행 계획 비교
@@ -203,11 +203,11 @@ member_id만 조회하는 경우 이미 PRIMARY KEY 인덱스가 존재하므로
 
 # DAY 13 - INDEX 활용과 비활용
 
-### Objective
+## Objective
 
 인덱스가 존재하더라도 쿼리 조건에 따라 인덱스가 사용되지 않을 수 있음을 이해하고 EXPLAIN을 통해 확인
 
-### Tasks
+## Tasks
 
 - LIKE 조건에서 인덱스 활용 여부 확인
 - 컬럼에 함수를 사용하는 경우 인덱스 활용 여부 확인
@@ -216,7 +216,7 @@ member_id만 조회하는 경우 이미 PRIMARY KEY 인덱스가 존재하므로
 
 ---
 
-### Design Note
+## Design Note
 
 #### 1. LIKE 조건에 따른 인덱스 사용
 
@@ -268,7 +268,7 @@ created_at에 YEAR() 함수를 적용하기 때문에 일반적인 **인덱스�
 
 쿼리의 조건이나 데이터의 양 등에 따라 MySQL이 인덱스를 사용하지 않을 수도 있으며, EXPLAIN을 통해 실제 실행 계획을 확인할 수 있다.
 
-### Result
+## Result
 
 - LIKE 'Pro%'와 LIKE '%Pro%'의 인덱스 활용 차이를 확인
 - 컬럼에 YEAR() 함수를 적용했을 때 인덱스를 효율적으로 활용하기 어려움을 확인

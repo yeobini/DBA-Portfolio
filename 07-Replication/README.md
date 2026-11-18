@@ -396,7 +396,7 @@ Replica가 해당 로그를 전달받아 Relay Log에 저장한 후 SQL 스레�
 따라서 Replica에서 직접 INSERT, UPDATE, DELETE를 수행하지 않아도
 Master에서 발생한 데이터 변경이 Replica에 자동으로 반영된다.
 
-## RESULT
+## Result
 
 - dba_portfolio 데이터베이스 Master → Replica 복제 확인
 - INSERT 복제를 통한 초기 데이터 구성 확인

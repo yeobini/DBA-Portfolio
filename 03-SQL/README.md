@@ -1,10 +1,10 @@
 # Day 3 - Database DDL (CREATE)
 
-### Objective
+## Objective
 
 ERD를 기반으로 MySQL DDL을 작성하고 테이블을 생성한다.
 
-### Tasks
+## Tasks
 
 - Member 테이블 생성
 - Category 테이블 생성
@@ -24,7 +24,7 @@ ERD를 기반으로 MySQL DDL을 작성하고 테이블을 생성한다.
 
 ---
 
-### Design NOTE
+## Design Note
 
 #### 1. OrderItem 테이블 분리 이유
 Orders와 Product는 하나의 주문에 여러 상품이 포함될 수 있고, 하나의 상품도 여러 주문에 포함될 수 있는 **N:M(다대다)** 관계이다.
@@ -68,13 +68,13 @@ DDL 작성 과정에서 실제 쇼핑몰 서비스의 요구사항을 고려하�
 
 ---
 
-### ERD
+## ERD
 
 ![ERD](erd_day3.PNG)
 
 ---
 
-### SQL
+## SQL
 
 전체 SQL은 아래 파일에서 확인할 수 있습니다.
 
@@ -82,7 +82,7 @@ DDL 작성 과정에서 실제 쇼핑몰 서비스의 요구사항을 고려하�
 
 ---
 
-### Result
+## Result
 - CREATE TABLE 작성
 - PK / FK 제약조건 적용
 - NOT NULL, UNIQUE, CHECK 사용
@@ -98,11 +98,11 @@ DDL 작성 과정에서 실제 쇼핑몰 서비스의 요구사항을 고려하�
 # Day 4 - Database DML (INSERT)
 
 
-### Objective
+## Objective
 쇼핑몰 데이터베이스에 테스트 데이터를 삽입하여 테이블 간 관계와 외래키(Foreign Key)를 검증하고, 이후 SQL 조회(SELECT) 및 JOIN 실습을 위한 테스트 데이터를 준비한다.
 
 
-### Tasks
+## Tasks
 - Member 데이터 입력
 - Category 데이터 입력
 - Product 데이터 입력
@@ -116,7 +116,7 @@ DDL 작성 과정에서 실제 쇼핑몰 서비스의 요구사항을 고려하�
 
 ---
 
-### Design Note
+## Design Note
 
 #### 1. OrderItem을 사용하는 이유
 
@@ -140,7 +140,7 @@ Review는 order_item_id를 참조하도록 설계하였다.
 
 ---
 
-### SQL
+## SQL
 
 전체 SQL은 아래 파일에서 확인할 수 있습니다.
 
@@ -150,7 +150,7 @@ Review는 order_item_id를 참조하도록 설계하였다.
 ---
 
 
-### Result
+## Result
 - INSERT 문 작성
 - 테스트 데이터 생성
 - FK 관계 검증
@@ -163,11 +163,11 @@ Review는 order_item_id를 참조하도록 설계하였다.
 # Day 5 -  SQL 기본 조회와 정렬 (SELECT, WHERE, ORDER BY)
 
 
-### Objective
+## Objective
 쇼핑몰 데이터베이스에 삽입한 테스트 데이터를 활용하여 SELECT 문을 학습하고, 기본적인 데이터 조회 및 정렬 방법을 실습한다.
 
 
-### TASKS
+## Tasks
 - SELECT 문 학습
 - WHERE를 이용한 조건 조회
 - ORDER BY를 이용한 데이터 정렬
@@ -175,7 +175,7 @@ Review는 order_item_id를 참조하도록 설계하였다.
 
 ---
 
-### Design Note
+## Design Note
 
 #### 1. SQL 작성 순서
 
@@ -203,7 +203,7 @@ SQL은 사람이 읽기 쉽도록 조회할 컬럼(SELECT) 을 먼저 작성하�
 
 ---
 
-### SQL
+## SQL
 
 전체 SQL은 아래 파일에서 확인할 수 있습니다.
 
@@ -213,7 +213,7 @@ SQL은 사람이 읽기 쉽도록 조회할 컬럼(SELECT) 을 먼저 작성하�
 ---
 
 
-### Result
+## Result
 - SELECT를 이용한 전체 데이터 조회
 - 필요한 컬럼만 조회하는 방법 학습
 - WHERE를 이용한 조건 조회
@@ -225,11 +225,11 @@ SQL은 사람이 읽기 쉽도록 조회할 컬럼(SELECT) 을 먼저 작성하�
 # Day 6 - SQL 조건 검색 심화 (LIMIT, DISTINCT, LIKE, BETWEEN, IN, IS NULL, AS)
 
 
-### Objective
+## Objective
 SQL 조회 시 필요한 조건 검색 문법을 학습하고, 데이터 조회 범위를 제한하거나 원하는 조건의 데이터만 추출하는 방법을 실습한다.
 
 
-### TASKS
+## Tasks
 - LIMIT을 이용한 조회 결과 개수 제한
 - DISTINCT를 이용한 중복 데이터 제거
 - LIKE를 이용한 패턴 검색
@@ -240,7 +240,7 @@ SQL 조회 시 필요한 조건 검색 문법을 학습하고, 데이터 조회 
 
 ---
 
-### Design Note
+## Design Note
 
 #### 1. LIMIT 사용 이유
 LIMIT은 조회 결과에서 원하는 개수만 반환하기 위해 사용한다.
@@ -291,7 +291,7 @@ AS는 조회 결과의 컬럼명을 변경할 때 사용한다.
 
 ---
 
-### SQL
+## SQL
 
 전체 SQL은 아래 파일에서 확인할 수 있습니다.
 
@@ -301,7 +301,7 @@ AS는 조회 결과의 컬럼명을 변경할 때 사용한다.
 ---
 
 
-### Result
+## Result
 - LIMIT을 이용한 조회 결과 제한
 - DISTINCT를 이용한 중복 데이터 제거
 - LIKE를 활용한 문자열 검색
@@ -315,12 +315,12 @@ AS는 조회 결과의 컬럼명을 변경할 때 사용한다.
 # Day 7 - JOIN
 
 
-### Objective
+## Objective
 JOIN을 이용하여 여러 테이블의 데이터를 조회하고,
 GROUP BY와 집계 함수를 활용하여 통계성 데이터를 조회하는 방법을 학습한다.
 
 
-### TASKS
+## Tasks
 - INNER JOIN
 - LEFT JOIN
 - 다중 JOIN
@@ -332,7 +332,7 @@ GROUP BY와 집계 함수를 활용하여 통계성 데이터를 조회하는 �
 
 ---
 
-### Design Note
+## Design Note
 
 #### 1. JOIN 사용 이유
 
@@ -391,7 +391,7 @@ JOIN은 여러 테이블의 데이터를 연결하는 과정에서 많은 데이
 
 ---
 
-### SQL
+## SQL
 
 전체 SQL은 아래 파일에서 확인할 수 있습니다.
 
@@ -400,7 +400,7 @@ JOIN은 여러 테이블의 데이터를 연결하는 과정에서 많은 데이
 
 ---
 
-### Result
+## Result
 
 - INNER JOIN을 이용하여 두 테이블 간 관계를 기반으로 데이터 조회
 - LEFT JOIN을 이용하여 매칭되지 않는 데이터(NULL) 확인
@@ -415,12 +415,12 @@ JOIN은 여러 테이블의 데이터를 연결하는 과정에서 많은 데이
 # Day 8 - GROUP BY & 집계 함수
 
 
-### Objective
+## Objective
 집계 함수와 GROUP BY를 활용하여 데이터를 그룹화하고,
 쇼핑몰 운영에 필요한 통계 데이터를 조회하는 방법을 학습한다.
 
 
-### TASKS
+## Tasks
 - GROUP BY를 이용한 데이터 그룹화
 - COUNT()를 이용한 데이터 개수 조회
 - SUM()을 이용한 합계 계산
@@ -430,7 +430,7 @@ JOIN은 여러 테이블의 데이터를 연결하는 과정에서 많은 데이
 
 ---
 
-### Design Note
+## Design Note
 
 #### 1. GROUP BY 사용 이유
 
@@ -474,7 +474,7 @@ orderitem의 quantity와 order_price를 활용하여 계산한다.
 
 ---
 
-### SQL
+## SQL
 
 전체 SQL은 아래 파일에서 확인할 수 있습니다.
 
@@ -483,7 +483,7 @@ orderitem의 quantity와 order_price를 활용하여 계산한다.
 
 ---
 
-### Result
+## Result
 - GROUP BY를 활용한 데이터 그룹화
 - COUNT()를 이용한 데이터 개수 조회
 - SUM()을 이용한 판매량 및 주문 금액 계산
@@ -498,12 +498,12 @@ orderitem의 quantity와 order_price를 활용하여 계산한다.
 
 # Day 9 - Subquery
 
-### Objective
+## Objective
 
 하나의 SQL 문 안에서 다른 SQL 문을 사용하여,
 서브쿼리의 결과를 조건으로 활용하는 방법을 학습한다.
 
-### Tasks
+## Tasks
 
 - 단일 행 Subquery
 - 다중 행 Subquery
@@ -515,7 +515,7 @@ orderitem의 quantity와 order_price를 활용하여 계산한다.
 
 ---
 
-### Design Note
+## Design Note
 
 #### 1. Subquery 사용 이유
 
@@ -639,7 +639,7 @@ WHERE price = (
 
 ---
 
-### SQL
+## SQL
 
 전체 SQL은 아래 파일에서 확인할 수 있습니다.
 
@@ -654,7 +654,7 @@ WHERE price = (
 
 ---
 
-### Result
+## Result
 
 - 단일 행 Subquery 작성
 - 다중 행 Subquery 작성
@@ -670,11 +670,11 @@ WHERE price = (
 
 # Day 10 - VIEW
 
-### Objective
+## Objective
 
 VIEW의 개념을 이해하고 반복적으로 사용하는 조회 쿼리를 VIEW로 작성
 
-### Tasks
+## Tasks
 - VIEW 개념 학습
 - VIEW 생성 
 - VIEW 조회
@@ -682,7 +682,7 @@ VIEW의 개념을 이해하고 반복적으로 사용하는 조회 쿼리를 VIE
 
 ---
 
-### Design Note
+## Design Note
 
 #### VIEW를 만드는 이유
 
@@ -692,7 +692,7 @@ VIEW는 하나 이상의 테이블을 기반으로 작성한 SELECT 쿼리를 �
 
 ---
 
-### SQL
+## SQL
 
 전체 SQL은 아래 파일에서 확인할 수 있습니다.
 
@@ -700,7 +700,7 @@ VIEW는 하나 이상의 테이블을 기반으로 작성한 SELECT 쿼리를 �
 
 ---
 
-### Result
+## Result
 
 - `member_order_view` 생성 및 조회
 - `member_total_purchase` 생성 및 조회
